@@ -23,7 +23,10 @@
             </div>
             <div class="form-group">
                 <label for="publisher">Publisher</label>
-                <input type="text" id="publisher" name="publisher" required="">
+                <!-- <input type="text" id="publisher" name="publisher" required=""> -->
+                <select v-model="book.manxb" name="publisher" id="">
+                    <option v-for="publisher in publisherData" :value="publisher._id">{{ publisher.tennxb }}</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="publication_date">Publish Year</label>
@@ -41,26 +44,37 @@
 
 <script setup>
 import BookService from '@/services/book.service';
-import { ref } from 'vue';
+import PulisherService from '@/services/publisher.service';
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 // Refs
 const book = ref({
     tensach: '',
     dongia: '',
     soquyen: '',
+    manxb: '',
     namxuatban: '',
     tacgia: '',
     image: '',
 })
+const publisherData = ref([]);
+const router = useRouter();
 
 // Methods
 
 async function onSubmitCreateBook() {
     const bookSubmitted = await BookService.create(book.value)
     console.log(bookSubmitted);
+    alert("Tạo thành công !");
+    router.go(-1)
 }
 
 // Hooks
+onMounted(async () => {
+    const pulishers = await PulisherService.getAll();
+    publisherData.value = pulishers;
+})
 
 </script>
 

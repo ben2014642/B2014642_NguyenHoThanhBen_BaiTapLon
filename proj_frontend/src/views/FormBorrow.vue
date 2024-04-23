@@ -57,7 +57,6 @@ const now = computed(() => {
 // console.log(now.value);
 
 async function onSubmitBorrow() {
-    console.log('123');
     const borrow = await BorrowService.create({
         masach: book.value._id,
         madocgia: userStore.user._id,

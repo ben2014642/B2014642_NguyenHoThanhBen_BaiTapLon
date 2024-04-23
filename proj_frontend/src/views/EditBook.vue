@@ -24,7 +24,10 @@
             </div>
             <div class="form-group">
                 <label for="publisher">Publisher</label>
-                <input type="text" id="publisher" name="publisher" required>
+                <!-- <input type="text" id="publisher" name="publisher" required> -->
+                <select v-model="book.manxb._id" id="">
+                    <option v-for="publisher in publisherData" :value="publisher._id" >{{ publisher.tennxb }}</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="publish_year">Publish Year</label>
@@ -45,23 +48,30 @@
 
 <script setup>
 import BookService from '@/services/book.service';
+import PublisherService from '@/services/publisher.service';
 import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 // Ref
 const book = ref(null);
 const route = useRoute();
+const router = useRouter();
+const publisherData = ref([]);
 
 // Methods
 async function onSubmitEditBook() {
     const bookEdited = await BookService.edit(book.value);
-    console.log(bookEdited);
+    alert("Cập nhật thành công !");
+    router.go(-1);
 }
 
 // Hooks
 onMounted(async () => {
     const masach = route.params.masach;
     book.value = await BookService.getOne(masach);
+
+    const pulishers = await PublisherService.getAll();
+    publisherData.value = pulishers;
 })
 
 </script>

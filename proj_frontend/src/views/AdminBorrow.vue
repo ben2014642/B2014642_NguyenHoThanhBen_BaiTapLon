@@ -1,5 +1,8 @@
 <template>
     <div class="content">
+        <div class="">
+                <a href="add-borrow.php" class="btn btnSuccess">Thêm</a>
+            </div>
         <div class="search-filter">
             <div>
                 <label for="search">Tìm kiếm sách:</label>
@@ -9,9 +12,7 @@
         </div>
 
         <div class="borrowed-books">
-            <div class="">
-                <a href="add-borrow.php" class="btn btnSuccess">Thêm</a>
-            </div>
+            
             <h2>Borrow Books</h2>
             <table>
                 <thead>

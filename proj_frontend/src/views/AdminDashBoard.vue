@@ -30,7 +30,7 @@
                     <td><img :src="book.image" style="width: 100px"></td>
                     <td>0</td>
                     <td>{{ book.tacgia }}</td>
-                    <td>1980 Books</td>
+                    <td>{{ book.manxb.tennxb ? book.manxb.tennxb : '' }}</td>
                     <!-- <td><button class="btn btnSuccess">Public</button></td> -->
                     <td>
                         <router-link class="btn btnEdit"

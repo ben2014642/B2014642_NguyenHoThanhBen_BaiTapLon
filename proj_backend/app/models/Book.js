@@ -14,8 +14,8 @@ const Book = new Schema({
         type: String
     },
     manxb: {
-        type: String,
-        default: '123'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Publisher'
     },
     tacgia: {
         type: String

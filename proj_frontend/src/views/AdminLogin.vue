@@ -4,7 +4,7 @@
         <form @submit.prevent="login" id="formLogin" method="POST">
             <div class="form-group">
                 <label for="username">Username: </label>
-                <input v-model="username" type="text" id="username" name="username" required="">
+                <input v-model="msnv" type="text" id="username" name="username" required="">
                 <div data-lastpass-icon-root=""
                     style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;">
                 </div>
@@ -30,14 +30,14 @@ import AuthService from "@/services/authen.service";
 import router from '@/router';
 
 // Refs
-const username = ref('');
+const msnv = ref('');
 const password = ref('');
 
 // Store
 const adminStore = useAdminStore();
 
 async function login() {
-    const admin = await AuthService.adminLogin({username: username.value,password: password.value});
+    const admin = await AuthService.adminLogin({msnv: msnv.value,password: password.value});
 
     adminStore.addAdmin(admin[0]);
     router.push({name: 'admin.home'})

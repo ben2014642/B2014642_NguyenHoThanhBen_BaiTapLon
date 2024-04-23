@@ -22,9 +22,12 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 import PublisherService from '@/services/publisher.service';
 import { ref } from 'vue';
 
+
+const router = useRouter();
 // Refs
 const publisher = ref({
     manxb: '',
@@ -36,7 +39,7 @@ const publisher = ref({
 
 async function onSubmitCreatePublisher() {
     const publisherSubmitted = await PublisherService.create(publisher.value)
-    console.log(publisherSubmitted);
+    router.go(-1);
 }
 
 // Hooks

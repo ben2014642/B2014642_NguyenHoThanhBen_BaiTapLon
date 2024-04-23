@@ -28,16 +28,18 @@
 <script setup>
 import PublisherService from '@/services/publisher.service';
 import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 // Ref
 const publisher = ref(null);
 const route = useRoute();
+const router = useRouter();
 
 // Methods
 async function onSubmitEditPublisher() {
     const publisherEdited = await PublisherService.edit(publisher.value);
-    console.log(publisherEdited);
+    alert('Cập nhật thành công !');
+    router.go(-1);
 }
 
 // Hooks
